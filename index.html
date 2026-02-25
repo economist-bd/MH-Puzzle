@@ -21,7 +21,7 @@
         }
 
         body {
-            background-color: #0f172a; /* ডার্ক ব্লু ব্যাকগ্রাউন্ড */
+            background-color: #0f172a; 
             color: white;
             height: 100dvh; 
             display: flex;
@@ -37,66 +37,68 @@
         }
 
         .level-text {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            color: #fbbf24; /* সোনালী রঙ */
+            color: #fbbf24;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .instruction {
-            font-size: 14px;
+            font-size: 15px;
             color: #cbd5e1;
+            margin-top: 5px;
         }
 
         /* পাজল বোর্ডের ডিজাইন (৯:১৬ সাইজ) */
         #puzzle-board {
-            width: 90vw;
-            max-width: 350px; 
-            aspect-ratio: 9 / 16; /* ৯:১৬ রেশিও */
+            width: 92vw;
+            max-width: 360px; 
+            aspect-ratio: 9 / 16; 
             background-color: #1e293b;
             border: 3px solid #3b82f6;
             border-radius: 8px;
             position: relative;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* ৩টি কলাম */
-            grid-template-rows: repeat(5, 1fr);    /* ৫টি সারি (মোট ১৫টি টুকরো) */
-            gap: 1px; /* টুকরোগুলোর মাঝে হালকা ফাঁকা জায়গা */
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: repeat(5, 1fr);    
+            gap: 2px; /* টুকরোগুলোর মাঝে হালকা ফাঁকা জায়গা */
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             background-size: cover;
             background-position: center;
+            touch-action: none; /* মোবাইল স্ক্রল বন্ধ করার জন্য অত্যন্ত জরুরি */
         }
 
-        /* পাজলের প্রতিটি টুকরোর (Piece) স্টাইল */
         .piece {
             width: 100%;
             height: 100%;
-            background-size: 300% 500%; /* ৩ কলাম, ৫ সারি অনুযায়ী জুম */
+            background-size: 300% 500%; 
             cursor: grab;
             border-radius: 2px;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
-            touch-action: none; /* মোবাইল ড্র্যাগিং স্মুথ করার জন্য */
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+            touch-action: none;
+            transition: opacity 0.2s;
         }
 
         .piece:active {
             cursor: grabbing;
         }
 
-        /* প্রিভিউ ওভারলে (ছবি দেখানোর সময়) */
         #preview-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: white;
             z-index: 10;
             text-align: center;
             padding: 20px;
+            border-radius: 5px;
         }
 
-        /* মেসেজ মোডাল (শিক্ষকের বার্তা) */
         #modal {
             display: none;
             position: fixed;
@@ -112,66 +114,70 @@
             background: white;
             color: #1e293b;
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 15px;
             text-align: center;
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            border-top: 5px solid #3b82f6;
+            border-top: 6px solid #16a34a;
         }
 
         .modal-title {
             color: #16a34a;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             margin-bottom: 10px;
         }
 
         .teacher-info {
-            background: #f1f5f9;
+            background: #f8fafc;
             padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
+            border-radius: 10px;
+            margin: 20px 0;
             font-size: 15px;
-            line-height: 1.5;
+            line-height: 1.6;
             text-align: left;
-            border-left: 4px solid #3b82f6;
+            border-left: 5px solid #3b82f6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .teacher-name {
             font-weight: bold;
             color: #1e40af;
-            font-size: 18px;
+            font-size: 19px;
+            margin-bottom: 5px;
         }
 
         .btn-next {
             background-color: #3b82f6;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 14px 25px;
+            border-radius: 10px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.1s;
         }
 
         .btn-next:active {
             background-color: #2563eb;
+            transform: scale(0.98);
         }
         
-        /* PWA Install Button */
         #install-btn {
             position: absolute;
             bottom: 20px;
             background: #22c55e;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 12px 25px;
+            border-radius: 25px;
             font-weight: bold;
+            font-size: 16px;
             display: none;
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.4);
         }
     </style>
 </head>
@@ -182,23 +188,24 @@
         <div class="instruction">আঙ্গুল দিয়ে টেনে টেনে ছবি মিলান</div>
     </div>
 
-    <!-- গেম বোর্ড -->
     <div id="puzzle-board">
         <div id="preview-overlay">৩ সেকেন্ড পর ছবি এলোমেলো হবে...</div>
     </div>
 
     <button id="install-btn">📱 অ্যাপ ইনস্টল করুন</button>
 
-    <!-- সাফল্যের বার্তা ও আপনার পরিচয় -->
     <div id="modal">
         <div class="modal-content">
-            <div class="modal-title">🎉 অভিনন্দন! 🎉</div>
-            <p>আপনি সম্পূর্ণ ছবিটি সফলভাবে মিলিয়েছেন!</p>
+            <div class="modal-title">🎉 ওয়েলকাম / অভিনন্দন! 🎉</div>
+            <p style="font-size: 16px; font-weight: 600;">আপনি সম্পূর্ণ ছবিটি সফলভাবে মিলিয়েছেন!</p>
             
             <div class="teacher-info">
                 <div class="teacher-name">মোঃ মঞ্জুরুল হক</div>
-                <div>প্রাবন্ধিক অর্থনীতি, জিয়াউদ্দিন স্কুল এন্ড কলেজ, কিশোরগঞ্জ।</div>
-                <hr style="margin: 8px 0; border: 0; border-top: 1px solid #cbd5e1;">
+                <div style="color: #475569; font-weight: 600;">প্রাবন্ধিক অর্থনীতি</div>
+                <div style="color: #64748b; margin-bottom: 10px;">জিয়াউদ্দিন স্কুল এন্ড কলেজ, কিশোরগঞ্জ।</div>
+                
+                <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 10px 0;">
+                
                 <div><strong>উদ্দেশ্য:</strong> শিক্ষার্থীদের আইসিটি, এআই এবং অনলাইন সম্পর্কে জ্ঞান দান করে প্রযুক্তির সঠিক ব্যবহারের মাধ্যমে আর্থিকভাবে স্বাবলম্বী ও জীবনে সমৃদ্ধি আনার লক্ষ্যে এই ক্ষুদ্র প্রয়াস।</div>
             </div>
 
@@ -207,15 +214,16 @@
     </div>
 
     <script>
-        // PWA Service Worker
+        // PWA Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js');
+                navigator.serviceWorker.register('sw.js').catch(() => {});
             });
         }
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); deferredPrompt = e;
+            e.preventDefault(); 
+            deferredPrompt = e;
             document.getElementById('install-btn').style.display = 'block';
         });
         document.getElementById('install-btn').addEventListener('click', async () => {
@@ -227,28 +235,25 @@
             }
         });
 
-        // --- গেম লজিক ---
-        
-        // ৫টি লেভেলের ছবির লিংক (সবগুলো ৯:১৬ সাইজের)
+        // --- ৫টি লেভেলের ছবি ---
         const levels = [
-            "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?q=80&w=540&h=960&fit=crop", // প্রকৃতি
-            "https://images.unsplash.com/photo-1496850574977-a4607106a874?q=80&w=540&h=960&fit=crop", // ট্রেন/ভ্রমণ
-            "https://images.unsplash.com/photo-1506744626753-1fa44df14dd3?q=80&w=540&h=960&fit=crop", // অটাম ফরেস্ট
-            "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=540&h=960&fit=crop", // আর্কিটেকচার
-            "https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=540&h=960&fit=crop"  // ক্যাসেল/ফ্যান্টাসি
+            "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?q=80&w=540&h=960&fit=crop", 
+            "https://images.unsplash.com/photo-1496850574977-a4607106a874?q=80&w=540&h=960&fit=crop", 
+            "https://images.unsplash.com/photo-1506744626753-1fa44df14dd3?q=80&w=540&h=960&fit=crop", 
+            "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=540&h=960&fit=crop", 
+            "https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=540&h=960&fit=crop"  
         ];
 
         let currentLevelIndex = 0;
         const cols = 3;
         const rows = 5;
-        const totalPieces = cols * rows; // মোট ১৫টি টুকরো
+        const totalPieces = cols * rows; 
         const board = document.getElementById('puzzle-board');
         const overlay = document.getElementById('preview-overlay');
         const modal = document.getElementById('modal');
         let pieces = [];
         let isPlaying = false;
 
-        // লেভেল লোড করা
         function loadLevel() {
             board.innerHTML = '';
             board.appendChild(overlay);
@@ -258,29 +263,23 @@
             document.getElementById('level-display').innerText = `লেভেল ${currentLevelIndex + 1}`;
             const imgUrl = levels[currentLevelIndex];
 
-            // ১৫টি টুকরো তৈরি
             for (let i = 0; i < totalPieces; i++) {
                 let piece = document.createElement('div');
                 piece.classList.add('piece');
                 piece.style.backgroundImage = `url('${imgUrl}')`;
                 
-                // ব্যাকগ্রাউন্ড পজিশন হিসাব করা
                 let col = i % cols;
                 let row = Math.floor(i / cols);
                 piece.style.backgroundPosition = `${(col * 100) / (cols - 1)}% ${(row * 100) / (rows - 1)}%`;
                 
-                // ডাটা এট্রিবিউটে সঠিক পজিশন সেভ করে রাখা
                 piece.dataset.correctPos = i;
                 piece.dataset.currentPos = i;
                 
-                // ড্র্যাগ ইভেন্ট যুক্ত করা
                 addDragEvents(piece);
-                
                 board.appendChild(piece);
                 pieces.push(piece);
             }
 
-            // শুরুতে সম্পূর্ণ ছবি ৩ সেকেন্ড দেখাবে
             overlay.style.display = 'flex';
             setTimeout(() => {
                 overlay.style.display = 'none';
@@ -289,7 +288,6 @@
             }, 3000);
         }
 
-        // বোর্ড এলোমেলো করা
         function shuffleBoard() {
             for (let i = pieces.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -297,7 +295,6 @@
             }
         }
 
-        // দুটি টুকরোর ছবি ও ডাটা অদলবদল (Swap) করা
         function swapPieces(piece1, piece2) {
             let tempBg = piece1.style.backgroundPosition;
             let tempCorrectPos = piece1.dataset.correctPos;
@@ -309,28 +306,24 @@
             piece2.dataset.correctPos = tempCorrectPos;
         }
 
-        // --- ড্র্যাগ ও ড্রপ লজিক (মোবাইল ও পিসির জন্য) ---
+        // --- আপডেট করা ড্র্যাগ ও ড্রপ লজিক (গাণিতিক পদ্ধতি) ---
         let draggedPiece = null;
         let cloneEl = null;
         let offsetX, offsetY;
 
         function addDragEvents(piece) {
-            // পিসি মাউস ইভেন্ট
             piece.addEventListener('mousedown', dragStart);
-            // মোবাইল টাচ ইভেন্ট
             piece.addEventListener('touchstart', dragStart, {passive: false});
         }
 
         function dragStart(e) {
             if (!isPlaying) return;
-            e.preventDefault();
+            e.preventDefault(); // মোবাইল স্ক্রল বন্ধ করে
             draggedPiece = e.target;
 
-            // টাচ বা মাউসের পজিশন নেওয়া
             let clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
             let clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
 
-            // টেনে নেওয়ার সময় আঙ্গুলের সাথে একটি ডামি (Clone) ছবি তৈরি করা
             const rect = draggedPiece.getBoundingClientRect();
             cloneEl = draggedPiece.cloneNode(true);
             cloneEl.style.position = 'fixed';
@@ -338,16 +331,17 @@
             cloneEl.style.top = rect.top + 'px';
             cloneEl.style.width = rect.width + 'px';
             cloneEl.style.height = rect.height + 'px';
-            cloneEl.style.opacity = '0.8';
-            cloneEl.style.pointerEvents = 'none'; // ডামি ছবিতে যেন টাচ না লাগে
+            cloneEl.style.opacity = '0.9';
+            cloneEl.style.pointerEvents = 'none'; 
             cloneEl.style.zIndex = '1000';
             cloneEl.style.border = '2px solid #fbbf24';
+            cloneEl.style.boxShadow = '0 10px 20px rgba(0,0,0,0.5)';
             document.body.appendChild(cloneEl);
 
             offsetX = clientX - rect.left;
             offsetY = clientY - rect.top;
 
-            draggedPiece.style.opacity = '0.3'; // আসল টুকরোটি হালকা করে দেওয়া
+            draggedPiece.style.opacity = '0.2'; 
 
             document.addEventListener(e.type.includes('mouse') ? 'mousemove' : 'touchmove', dragMove, {passive: false});
             document.addEventListener(e.type.includes('mouse') ? 'mouseup' : 'touchend', dragEnd);
@@ -359,25 +353,45 @@
             let clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
             let clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
 
-            // ডামি ছবিকে আঙ্গুলের সাথে সাথে ঘোরানো
             cloneEl.style.left = (clientX - offsetX) + 'px';
             cloneEl.style.top = (clientY - offsetY) + 'px';
         }
 
         function dragEnd(e) {
-            if (!cloneEl) return;
+            if (!cloneEl || !draggedPiece) return;
+            
             let clientX = e.type.includes('mouse') ? e.clientX : e.changedTouches[0].clientX;
             let clientY = e.type.includes('mouse') ? e.clientY : e.changedTouches[0].clientY;
 
-            // আঙ্গুল যেখানে ছাড়লো, সেখানকার টুকরোটি খুঁজে বের করা
             draggedPiece.style.opacity = '1';
-            let target = document.elementFromPoint(clientX, clientY);
-            let dropPiece = target ? target.closest('.piece') : null;
 
-            // যদি অন্য কোনো টুকরোর উপর ছাড়া হয়, তবে তাদের ছবি অদলবদল হবে
-            if (dropPiece && dropPiece !== draggedPiece) {
-                swapPieces(draggedPiece, dropPiece);
-                checkWin();
+            // গাণিতিক পদ্ধতিতে ড্রপ করা জায়গা বের করা
+            const boardRect = board.getBoundingClientRect();
+            
+            // চেক করা হচ্ছে আঙ্গুলটি বোর্ডের ভেতরে আছে কিনা
+            if (clientX >= boardRect.left && clientX <= boardRect.right &&
+                clientY >= boardRect.top && clientY <= boardRect.bottom) {
+                
+                const dropX = clientX - boardRect.left;
+                const dropY = clientY - boardRect.top;
+
+                const colWidth = boardRect.width / cols;
+                const rowHeight = boardRect.height / rows;
+
+                // কত নম্বর কলাম এবং সারিতে ছাড়া হয়েছে তার হিসাব
+                const targetCol = Math.floor(dropX / colWidth);
+                const targetRow = Math.floor(dropY / rowHeight);
+
+                // ১৫টি টুকরোর মধ্যে ইনডেক্স বের করা
+                const targetIndex = targetRow * cols + targetCol;
+
+                if (targetIndex >= 0 && targetIndex < pieces.length) {
+                    let dropPiece = pieces[targetIndex];
+                    if (dropPiece && dropPiece !== draggedPiece) {
+                        swapPieces(draggedPiece, dropPiece);
+                        checkWin();
+                    }
+                }
             }
 
             // ক্লিনআপ
@@ -385,15 +399,14 @@
             cloneEl = null;
             draggedPiece = null;
 
-            // ইভেন্ট রিমুভ
             document.removeEventListener(e.type.includes('mouse') ? 'mousemove' : 'touchmove', dragMove);
             document.removeEventListener(e.type.includes('mouse') ? 'mouseup' : 'touchend', dragEnd);
         }
 
-        // গেম জেতা চেক করা
         function checkWin() {
             let hasWon = true;
             pieces.forEach(piece => {
+                // প্রতিটি টুকরোর বর্তমান ছবি কি তার আসল ছবির সমান?
                 if (piece.dataset.correctPos !== piece.dataset.currentPos) {
                     hasWon = false;
                 }
@@ -403,7 +416,6 @@
                 isPlaying = false;
                 setTimeout(() => {
                     modal.style.display = 'flex';
-                    // যদি ৫টি লেভেল শেষ হয়
                     if (currentLevelIndex >= levels.length - 1) {
                         document.getElementById('next-level-btn').innerText = "আবার প্রথম থেকে শুরু করুন";
                     } else {
@@ -413,17 +425,15 @@
             }
         }
 
-        // পরবর্তী লেভেলে যাওয়া
         function nextLevel() {
             modal.style.display = 'none';
             currentLevelIndex++;
             if (currentLevelIndex >= levels.length) {
-                currentLevelIndex = 0; // গেম রিসেট
+                currentLevelIndex = 0; 
             }
             loadLevel();
         }
 
-        // পেজ লোড হলে প্রথম লেভেল শুরু হবে
         window.onload = loadLevel;
 
     </script>
